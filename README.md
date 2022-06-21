@@ -20,6 +20,8 @@ ____________
 Wireframe
 ____________
 
+See wireframe here: https://i.imgur.com/nGl7e1i.jpg
+
 This app will consist of a modal grid of film posters from Owen Wilson's filmography. When the user clicks on an image, the "wow" from the respective movie will play, and a box will appear in the center of the screen with an enlarged image of the poster and more details from the movie. 
 
 ____________
