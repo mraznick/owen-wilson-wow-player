@@ -41,6 +41,7 @@ ____________
 Post-MVP
 ____________
 
+- Create a game where a random recording plays and the user has to guess the movie it's from
 - Create categories to browse movies according to year, genre, director, etc.
 
 ____________
