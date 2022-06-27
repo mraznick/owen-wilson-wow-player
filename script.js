@@ -28,7 +28,6 @@ fetch(url)
         posterDiv.appendChild(posterImg)
         document.querySelector('.parent-div').appendChild(posterDiv)
 
-
         let modalDiv = document.createElement('div')
         modalDiv.className = "modal"
         modalDiv.id = `${filteredRes[i].movie} - modal`
@@ -43,29 +42,47 @@ fetch(url)
         closeButton.setAttribute('data-close', '#close')
         closeButton.innerHTML += 'close'
 
-
         let modalHeader = document.createElement('div')
         modalHeader.className = "modal-header"
         modalHeader.innerHTML += `${filteredRes[i].movie} `
 
         let modalBody = document.createElement('div')
         modalBody.className = "modal-body"
-        modalBody.innerHTML += `${filteredRes[i].release_date} `
+        modalBody.innerHTML += `Realeased: ${filteredRes[i].release_date}`
+
+        // let modalAudio = document.createElement('audio')
+        // modalAudio.className = "modal-audio"
+        // modalAudio.id = `${filteredRes[i].movie} - audio`
+        // modalAudio.src = `${filteredRes[i].audio}`
+        // modalAudio.setAttribute('type', 'audio/mpeg')
+        // modalAudio.setAttribute(`data-audio-target`, '#audio')
+
+        let modalAudioInfo = `
+        <audio controls class="modal-audio" id="${filteredRes[i].movie} - audio" src="${filteredRes[i].audio}" >
+          
+        </audio>
+      `
+
 
         document.querySelector('.parent-div').appendChild(modalDiv)
         modalDiv.appendChild(closeButton)
         modalDiv.appendChild(modalHeader)
         modalDiv.appendChild(modalImg)
         modalDiv.appendChild(modalBody)
+        // modalDiv.appendChild(modalAudio)
+        modalDiv.insertAdjacentHTML("beforeend", modalAudioInfo)
 
 
         openModalButtons = document.querySelectorAll(`[data-modal-target]`)
         closeModalButtons = document.querySelectorAll('[data-close]')
+        modalAudio = document.querySelectorAll(`[data-audio-target]`)
         let overlay = document.getElementById('overlay')
+
 
         openModalButtons.forEach(button => {
           button.addEventListener('click', (e) => {
             openModal(e.target)
+            modalAudio()
           })
 
           closeModalButtons.forEach(button => {
@@ -87,6 +104,11 @@ fetch(url)
             if (modal == null) return
             modalDiv.classList.remove('active')
             overlay.classList.remove('active')
+          }
+
+          function modalAudio() {
+            let audioPlay = document.getElementById(`${filteredRes[i].movie} - audio`)
+            audioPlay.play()
           }
 
         })
