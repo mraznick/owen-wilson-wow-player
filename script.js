@@ -1,6 +1,6 @@
-let url = 'https://owen-wilson-wow-api.herokuapp.com/wows/ordered/1-10'
+let url = 'https://owen-wilson-wow-api.herokuapp.com/wows/ordered/1-20'
 
-
+let openModalButtons
 
 
 fetch(url)
@@ -15,53 +15,83 @@ fetch(url)
         }
       })
       function createList() {
+
         let posterDiv = document.createElement('div')
         posterDiv.className = "poster-div"
 
         let posterImg = document.createElement('img')
         posterImg.className = "poster-image"
-        posterImg.id = "modal-target"
+        posterImg.id = `modal-target-${filteredRes[i].movie}`
         posterImg.src = `${filteredRes[i].poster}`
-        posterImg.setAttribute('data-modal-target', '#modal')
+        posterImg.setAttribute(`data-modal-target`, '#modal')
 
         posterDiv.appendChild(posterImg)
-
         document.querySelector('.parent-div').appendChild(posterDiv)
 
-        openModalButtons = document.querySelectorAll('[data-modal-target]')
-        let closeModalButtons = document.querySelectorAll('[data-close]')
-        let overlay = document.getElementById('overlay')
-        openModalButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const modal = document.querySelector(button.dataset.modalTarget)
-            console.log('hello')
-            openModal(modal)
 
-            closeModalButtons.forEach(button => {
-              button.addEventListener('click', () => {
-                const modal = button.closest('.modal')
-                closeModal(modal)
-              })
+        let modalDiv = document.createElement('div')
+        modalDiv.className = "modal"
+        modalDiv.id = `${filteredRes[i].movie} - modal`
+
+        let modalImg = document.createElement('img')
+        modalImg.className = "modal-image"
+        modalImg.id = "modal-image"
+        modalImg.src = `${filteredRes[i].poster}`
+
+        let closeButton = document.createElement('button')
+        closeButton.className = "close"
+        closeButton.setAttribute('data-close', '#close')
+        closeButton.innerHTML += 'close'
+
+
+        let modalHeader = document.createElement('div')
+        modalHeader.className = "modal-header"
+        modalHeader.innerHTML += `${filteredRes[i].movie} `
+
+        let modalBody = document.createElement('div')
+        modalBody.className = "modal-body"
+        modalBody.innerHTML += `${filteredRes[i].release_date} `
+
+        document.querySelector('.parent-div').appendChild(modalDiv)
+        modalDiv.appendChild(closeButton)
+        modalDiv.appendChild(modalHeader)
+        modalDiv.appendChild(modalImg)
+        modalDiv.appendChild(modalBody)
+
+
+        openModalButtons = document.querySelectorAll(`[data-modal-target]`)
+        closeModalButtons = document.querySelectorAll('[data-close]')
+        let overlay = document.getElementById('overlay')
+
+        openModalButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            openModal(e.target)
+          })
+
+          closeModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              const modal = button.closest('.modal')
+              closeModal(modal)
             })
           })
+
+          function openModal(modal) {
+            if (modal == null) return
+            if (modal.id === posterImg.id) {
+              modalDiv.classList.add('active')
+              overlay.classList.add('active')
+            }
+          }
+
+          function closeModal(modal) {
+            if (modal == null) return
+            modalDiv.classList.remove('active')
+            overlay.classList.remove('active')
+          }
+
         })
+
       }
       createList();
     }
   })
-
-
-let openModalButtons
-
-
-function openModal(modal) {
-  if (modal == null) return
-  modal.classList.add('active')
-  overlay.classList.add('active')
-}
-
-function closeModal(modal) {
-  if (modal == null) return
-  modal.classList.remove('active')
-  overlay.classList.remove('active')
-}
