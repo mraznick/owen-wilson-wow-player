@@ -1,4 +1,4 @@
-let url = 'https://owen-wilson-wow-api.herokuapp.com/wows/ordered/1-50'
+let url = 'https://owen-wilson-wow-api.herokuapp.com/wows/ordered/1-80'
 
 let openModalButtons
 
