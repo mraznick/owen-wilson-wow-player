@@ -41,8 +41,9 @@ ____________
 Post-MVP
 ____________
 
-- Create a game where a random recording plays and the user has to guess the movie it's from
-- Create categories to browse movies according to year, genre, director, etc.
+- Add more film details
+- Create a game where a random recording plays and the user has to guess the movie it's from.
+- Create a sort method for number of wows, release date, and earliest wow on timestamp
 
 ____________
 
