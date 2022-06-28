@@ -44,6 +44,8 @@ ____________
 - Add more film details
 - Create a game where a random recording plays and the user has to guess the movie it's from.
 - Create a sort method for number of wows, release date, and earliest wow on timestamp
+- Allow user to click outside of modal to close pop-up (instead of just "close"
+  button)
 
 ____________
 
