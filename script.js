@@ -1,4 +1,4 @@
-let url = 'https://owen-wilson-wow-api.herokuapp.com/wows/ordered/1-20'
+let url = 'https://owen-wilson-wow-api.herokuapp.com/wows/ordered/1-50'
 
 let openModalButtons
 
@@ -48,7 +48,9 @@ fetch(url)
 
         let modalBody = document.createElement('div')
         modalBody.className = "modal-body"
-        modalBody.innerHTML += `Realeased: ${filteredRes[i].release_date}`
+        modalBody.innerHTML += `Released: ${filteredRes[i].release_date}<br>`
+        modalBody.innerHTML += `Directed by ${filteredRes[i].director}<br>`
+        modalBody.innerHTML += `Total wows in movie: ${filteredRes[i].total_wows_in_movie}<br>`
 
         // let modalAudio = document.createElement('audio')
         // modalAudio.className = "modal-audio"
